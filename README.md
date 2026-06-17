@@ -45,7 +45,7 @@ xbox360/bin/  Local helper binaries
 Set a custom IDA path with:
 
 ```powershell
-$env:XEXD_IDA_ROOT = "C:\Path\To\IDA Professional 9.3"
+$env:XEXD_IDA_ROOT = "<IDA install directory>"
 ```
 
 ## Bootstrap
@@ -60,8 +60,8 @@ From a fresh clone:
 If you keep the workspace somewhere else:
 
 ```powershell
-.\scripts\bootstrap-workspace.ps1 -Root "D:\Tools\x360-decompilation-tools"
-.\setup.ps1 -Root "D:\Tools\x360-decompilation-tools" -IdaRoot "C:\Path\To\IDA"
+.\scripts\bootstrap-workspace.ps1 -Root "<workspace directory>"
+.\setup.ps1 -Root "<workspace directory>" -IdaRoot "<IDA install directory>"
 ```
 
 Large runtimes are not bundled. Place or install them under the selected workspace root:
@@ -91,7 +91,7 @@ workspace/decomp/<input-module-name>
 Override with:
 
 ```powershell
-$env:XEX_DECOMP_OUT = "D:\Research\decompiled\module_name"
+$env:XEX_DECOMP_OUT = "<output directory>"
 ```
 
 Each output folder contains:
@@ -108,7 +108,7 @@ Each output folder contains:
 ## Ghidra Import
 
 ```powershell
-.\scripts\import-xex-ghidra.ps1 -InputXex "D:\Research\module.xex" -ProjectName module
+.\scripts\import-xex-ghidra.ps1 -InputXex "<path to module.xex>" -ProjectName module
 ```
 
 XEXLoaderWV is rebuilt locally with JDK 21 when needed so Ghidra 12.1 headless can load it.

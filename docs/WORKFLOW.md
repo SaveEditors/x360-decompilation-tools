@@ -26,13 +26,13 @@ workspace/decomp/<input-module-name>
 Override output folder:
 
 ```powershell
-$env:XEX_DECOMP_OUT = "D:\Research\decompiled\module_name"
+$env:XEX_DECOMP_OUT = "<output directory>"
 ```
 
 ## 3. Cross-Check With Ghidra
 
 ```powershell
-.\scripts\import-xex-ghidra.ps1 -InputXex "D:\Research\module.xex" -ProjectName module_name
+.\scripts\import-xex-ghidra.ps1 -InputXex "<path to module.xex>" -ProjectName module_name
 ```
 
 Use Ghidra for loader parity checks, strings, memory maps, function discovery, cross-reference exploration, and MCP-assisted navigation.
