@@ -1,0 +1,26 @@
+# Installed portable runtimes and downloaded third-party repositories.
+/downloads/
+/ghidra/
+/runtime/
+/venvs/
+/workspace/
+/repos/
+/tools/
+/mcp/*.py
+/xbox360/bin/
+
+# Local binary/project outputs.
+*.i64
+*.idb
+*.id0
+*.id1
+*.nam
+*.til.bak
+*.log
+*.tmp
+
+# Python and PowerShell noise.
+__pycache__/
+*.pyc
+*.pyo
+*.ps1xml
