@@ -10,6 +10,6 @@ Keep these out of Git history:
 - private PDBs or SDK headers unless you have rights to distribute them
 - commercial tool installers or license files
 
-Use private artifact storage for sensitive research outputs. Public repository contents should stay limited to scripts, documentation, configuration templates, reproducible bootstrap instructions, and non-proprietary metadata.
+Use private artifact storage for sensitive research outputs. Keep this repository limited to scripts, documentation, configuration templates, reproducible bootstrap instructions, and non-proprietary metadata.
 
 Users are responsible for complying with local law, license agreements, and platform terms.

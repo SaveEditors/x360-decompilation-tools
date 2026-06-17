@@ -27,7 +27,7 @@ $script:GhidraMcpPython = Join-Path $script:GhidraMcpVenv "Scripts\python.exe"
 $script:GhidraMcpBridge = Join-Path $script:Root "mcp\bridge_mcp_ghidra_lauriewired.py"
 $script:Xex1Tool = Join-Path $script:Root "xbox360\bin\xex1tool.exe"
 
-function Set-XexDecompilerEnvironment {
+function Set-X360DecompilationEnvironment {
     New-Item -ItemType Directory -Force -Path `
         $script:WorkspaceRoot, `
         $script:TempRoot, `
@@ -61,4 +61,4 @@ function Set-XexDecompilerEnvironment {
     $env:PATH = "$prepend;$env:PATH"
 }
 
-Set-XexDecompilerEnvironment
+Set-X360DecompilationEnvironment

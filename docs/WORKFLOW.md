@@ -11,22 +11,22 @@ Use `-Root` if the workspace root differs from the repo location. Use `-IdaRoot`
 
 ## 2. Import With IDA
 
-IDA + idaxex is the canonical full-export path.
+IDA + idaxex is the canonical path for full pseudocode and disassembly output.
 
 1. Open a XEX/XBE module in IDA.
 2. Let auto-analysis complete.
 3. Run `scripts/ida_export_decomp.py` through IDA MCP or IDAPython.
 
-Default export:
+Default output:
 
 ```text
 workspace/decomp/<input-module-name>
 ```
 
-Override export folder:
+Override output folder:
 
 ```powershell
-$env:XEX_DECOMP_OUT = "D:\Research\exports\module_name"
+$env:XEX_DECOMP_OUT = "D:\Research\decompiled\module_name"
 ```
 
 ## 3. Cross-Check With Ghidra
@@ -37,9 +37,9 @@ $env:XEX_DECOMP_OUT = "D:\Research\exports\module_name"
 
 Use Ghidra for loader parity checks, strings, memory maps, function discovery, cross-reference exploration, and MCP-assisted navigation.
 
-## 4. Export Contents
+## 4. Output Contents
 
-Each export folder contains:
+Each output folder contains:
 
 - `manifest.json`
 - `functions\*.cpp`
@@ -52,4 +52,4 @@ Each export folder contains:
 
 ## 5. Publishing Guidance
 
-Do not commit proprietary binaries or decompiler databases. Generated decompilation output may also be copyright-sensitive. Keep research outputs private unless distribution rights are clear.
+Do not commit proprietary binaries or decompiler databases. Decompiled output may also be copyright-sensitive. Keep research outputs private unless distribution rights are clear.

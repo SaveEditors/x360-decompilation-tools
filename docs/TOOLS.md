@@ -6,7 +6,7 @@ This repo tracks installers, setup glue, and workflow scripts. It does not redis
 
 | Tool | Purpose | Source / requirement |
 |---|---|---|
-| IDA Professional | Primary decompiler host for full pseudocode export | User-provided commercial install |
+| IDA Professional | Primary decompiler host for full pseudocode output | User-provided commercial install |
 | idaxex | IDA XEX/XBE loader and `xex1tool` helper | `https://github.com/emoose/idaxex` |
 | Ghidra | Secondary analysis/decompiler and headless automation | `https://github.com/NationalSecurityAgency/ghidra` |
 | XEXLoaderWV | Ghidra XEX loader rebuilt locally for the selected Ghidra/JDK version | `https://github.com/zeroKilo/XEXLoaderWV` |

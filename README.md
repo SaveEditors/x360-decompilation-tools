@@ -1,25 +1,25 @@
-# XEX Decompiler Workbench
+# x360 Decompilation Tools
 
-Portable Xbox 360 reverse-engineering and decompilation workspace for IDA/idaxex, Ghidra/XEXLoaderWV, MCP-assisted analysis, cross-reference work, and repeatable exports.
+Portable Xbox 360 reverse-engineering and decompilation workspace for IDA/idaxex, Ghidra/XEXLoaderWV, MCP-assisted analysis, cross-reference work, and repeatable decompilation output.
 
-This repository is user-facing. It tracks setup scripts, exporter/importer scripts, workflow docs, and third-party notices. It does not vendor commercial tools, console binaries, decrypted modules, IDA/Ghidra databases, or cloned third-party source trees.
+This repository tracks setup scripts, analysis helpers, workflow docs, and third-party notices. It does not vendor commercial tools, console binaries, decrypted modules, IDA/Ghidra databases, or cloned third-party source trees.
 
 ## Supported Workflow
 
 - Load XEX/XBE modules in IDA with idaxex.
-- Run full IDA pseudocode/disassembly exports.
+- Write full IDA pseudocode and disassembly output.
 - Cross-check imports, memory maps, strings, and functions in Ghidra with XEXLoaderWV.
 - Use GhidraMCP/IDA MCP workflows for automated cross-reference and porting tasks.
-- Keep generated exports and proprietary inputs outside public Git history.
+- Keep decompiled output and proprietary inputs outside public Git history.
 
 ## Layout
 
 ```text
 config/       Environment/path setup
 docs/         Workflow, tool, legal, and third-party notices
-scripts/      Bootstrap, install, import, verify, MCP, and export scripts
+scripts/      Bootstrap, install, import, verify, MCP, and decompiler scripts
 templates/    Reserved for project templates
-schemas/      Reserved for machine-readable export schemas
+schemas/      Reserved for machine-readable output schemas
 ```
 
 Ignored local workspace folders:
@@ -30,7 +30,7 @@ repos/        Cloned third-party source/reference repositories
 runtime/      JDK/Maven or other local runtimes
 ghidra/       Local Ghidra install
 venvs/        Python virtual environments
-workspace/    Project databases, logs, caches, exports
+workspace/    Project databases, logs, caches, decompilation output
 xbox360/bin/  Local helper binaries
 ```
 
@@ -38,7 +38,7 @@ xbox360/bin/  Local helper binaries
 
 - Windows PowerShell 7 or Windows PowerShell 5.1
 - Git and GitHub CLI if you plan to publish/fork
-- Licensed IDA Professional install if using IDA decompiler exports
+- Licensed IDA Professional install if using IDA decompiler output
 - Ghidra 12.1 for the bundled Ghidra workflow
 - JDK 21 and Maven for rebuilding Ghidra extensions
 
@@ -78,7 +78,7 @@ runtime/apache-maven-3.9.16
 .\scripts\verify-tools.ps1
 ```
 
-## Full IDA Export
+## Full IDA Decompilation
 
 Open a module in IDA, wait for auto-analysis, then run `scripts/ida_export_decomp.py` through IDA MCP or IDAPython.
 
@@ -91,10 +91,10 @@ workspace/decomp/<input-module-name>
 Override with:
 
 ```powershell
-$env:XEX_DECOMP_OUT = "D:\Research\exports\module_name"
+$env:XEX_DECOMP_OUT = "D:\Research\decompiled\module_name"
 ```
 
-Each export contains:
+Each output folder contains:
 
 - `manifest.json`
 - `functions/*.cpp`

@@ -1,7 +1,7 @@
-"""Export every function from the open IDA database.
+"""Write decompiler output for every function in the open IDA database.
 
 Run inside IDA/IDAPython, normally through IDA MCP. Set XEX_DECOMP_OUT to
-choose the destination. The exporter overwrites only files under that output
+choose the destination. The script overwrites only files under that output
 directory.
 """
 
@@ -111,7 +111,7 @@ def _xref_summary(ea: int) -> dict[str, list[str]]:
     return {"to": to_refs, "from": from_refs}
 
 
-def _export_strings(out: Path) -> None:
+def _write_strings_inventory(out: Path) -> None:
     rows = []
     for s in idautils.Strings():
         ea = int(s.ea)
@@ -127,14 +127,14 @@ def _export_strings(out: Path) -> None:
     _write(out / "strings.json", json.dumps(rows, indent=2))
 
 
-def _export_names(out: Path) -> None:
+def _write_names_inventory(out: Path) -> None:
     rows = []
     for ea, name in idautils.Names():
         rows.append({"address": f"0x{ea:08X}", "name": name})
     _write(out / "names.json", json.dumps(rows, indent=2))
 
 
-def _export_segments(out: Path) -> None:
+def _write_segments_inventory(out: Path) -> None:
     rows = []
     for seg_ea in idautils.Segments():
         seg = ida_segment.getseg(seg_ea)
@@ -152,7 +152,7 @@ def _export_segments(out: Path) -> None:
     _write(out / "segments.json", json.dumps(rows, indent=2))
 
 
-def _export_imports(out: Path) -> None:
+def _write_imports_inventory(out: Path) -> None:
     rows = []
     qty = ida_nalt.get_import_module_qty()
     for i in range(qty):
@@ -174,7 +174,7 @@ def _export_imports(out: Path) -> None:
 
 
 def main() -> None:
-    ida_kernwin.replace_wait_box("Exporting full decompile...")
+    ida_kernwin.replace_wait_box("Writing full decompilation output...")
     out = _output_path()
     out = out.resolve()
     _validate_output_root(out)
@@ -193,7 +193,7 @@ def main() -> None:
         "processor": ida_idp.get_idp_name(),
         "output": str(out),
         "function_count": len(funcs),
-        "generated_utc": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+        "decompiled_utc": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
         "functions": [],
     }
 
@@ -245,12 +245,12 @@ def main() -> None:
     _write(out / "manifest.json", json.dumps(manifest, indent=2))
     _write(out / "failures.json", json.dumps(failures, indent=2))
 
-    _export_strings(out)
-    _export_names(out)
-    _export_segments(out)
-    _export_imports(out)
+    _write_strings_inventory(out)
+    _write_names_inventory(out)
+    _write_segments_inventory(out)
+    _write_imports_inventory(out)
 
-    readme = f"""# Full IDA Decompile Export
+    readme = f"""# Full IDA Decompilation
 
 Input: `{manifest["input_file"]}`
 
@@ -258,7 +258,7 @@ Input: `{manifest["input_file"]}`
 - Decompiled: {manifest["decompile_success_count"]}
 - Failed: {manifest["decompile_failure_count"]}
 - Processor: `{manifest["processor"]}`
-- Generated UTC: `{manifest["generated_utc"]}`
+- Decompiled UTC: `{manifest["decompiled_utc"]}`
 
 Key files:
 
